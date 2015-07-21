@@ -55,8 +55,14 @@ class Register(CreateView):
 
         return res
 
-class ValidNewUser(base.View):
+class UserExists(base.View):
     """ Validates a parsley.js ajax call to see if an email is taken """
     def get(self, request):
-        user = get_object_or_404(User, username=request.GET['email'])
+        username = None
+        if 'username' in request.GET:
+            username = request.GET['username']
+        else:
+            username = request.GET['email']
+
+        user = get_object_or_404(User, username=username)
         return HttpResponse()

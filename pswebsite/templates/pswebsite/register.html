@@ -11,9 +11,8 @@
                     <div class="row uniform">
                         <div class="12u">
                             <input name="{{ form.email.name }}" placeholder="{{ form.email.label }}"
-                                type="email"
-                                id="{{ form.email.id_for_label }}" maxlength="254"
-                                data-parsley-trigger="change" data-parsley-remote="{% url 'pswebsite:validnewuser' %}"
+                                type="email" id="{{ form.email.id_for_label }}" maxlength="254"
+                                data-parsley-trigger="change" data-parsley-remote="{% url 'pswebsite:userexists' %}"
                                 data-parsley-remote-message="This email has already been registered."
                                 data-parsley-remote-reverse="true" required>
                         </div>

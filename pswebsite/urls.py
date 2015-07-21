@@ -31,5 +31,5 @@ urlpatterns = [
     url(r'^register/$', views.Register.as_view(), name='register'),
 
     # ajax method
-    url(r'^validate/validnewuser/$', views.ValidNewUser.as_view(), name='validnewuser'),
+    url(r'^validate/userexists/$', views.UserExists.as_view(), name='userexists'),
 ]
