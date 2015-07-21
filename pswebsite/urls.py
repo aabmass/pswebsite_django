@@ -1,0 +1,35 @@
+from django.conf.urls import url
+
+from django.views.generic.edit import CreateView
+
+from django.contrib.auth import views as auth_views
+from django.contrib.auth import forms
+
+from . import views
+
+urlpatterns = [
+    url(r'^$', views.IndexView.as_view(), name='index'),
+    url(r'^about/$', views.AboutView.as_view(), name='about'),
+    url(r'^user/$', views.UserView.as_view(), name='user'),
+
+    url(r'^login/$',
+        auth_views.login,
+        {
+            'template_name': 'pswebsite/login.html',
+            'extra_context': {'page_title': 'Login'},
+        },
+        name='login'
+    ),
+
+    url(r'^logout/$',
+        auth_views.logout,
+        {
+            'next_page': 'pswebsite:index',
+        },
+        name='logout'
+    ),
+    url(r'^register/$', views.Register.as_view(), name='register'),
+
+    # ajax method
+    url(r'^validate/validnewuser/$', views.ValidNewUser.as_view(), name='validnewuser'),
+]

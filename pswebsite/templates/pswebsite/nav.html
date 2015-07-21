@@ -1,0 +1,20 @@
+<!-- Header -->
+<header id="header">
+    <h1><a href="{% url 'pswebsite:index' %}">{{ proj_vars.project_name }}</a></h1>
+    <nav id="nav">
+        <ul>
+            {# The other menus #}
+            {% for m in menus %}
+                <li><a href="{% url m.route_func_name %}">{{ m.name }}</a>
+                {% if m.display_submenus %}
+                    <ul class="submenu">
+                        {% for subm in m.submenus %}
+                            <li><a href="{% url subm.route_func_name %}">{{ subm.name }}</a></li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+    </nav>
+</header>

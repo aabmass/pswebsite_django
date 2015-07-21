@@ -1,0 +1,8 @@
+{% extends "pswebsite/layout.html" %}
+{% load staticfiles %}
+
+{% block jsIncludes %}
+    <script src="{% static 'pswebsite/js/parsley.remote.min.js' %}"></script>
+    <script src="{% static 'pswebsite/js/parsley.min.js' %}"></script>
+    {{ block.super }}
+{% endblock %}

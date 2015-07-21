@@ -1,0 +1,105 @@
+{% extends "pswebsite/with-forms.html" %}
+{% block content %}
+<!-- Main -->
+<section id="main" class="wrapper">
+    <div class="container">
+        <section>
+            <h2>Login</h2>
+            <div class="container 50%">
+                <form class="parsley-form" id="loginForm" action="{% url 'pswebsite:login' %}" method="post">
+                    {% csrf_token %}
+                    <div class="row uniform">
+                        <div class="6u 12u$(small)">
+                            <input id="{{ login_form.username.id_for_label }}" maxlength="254"
+                                name="{{ login_form.username.name }}" type="text" placeholder="Email"
+                                data-parsley-trigger="change" required>
+                        </div>
+                        <div class="6u$ 12u$(small)">
+                            <input name="{{ login_form.password.name }}"
+                                id="{{ login_form.password.id_for_label }}"
+                                placeholder="Password" type="password" required>
+                        </div>
+                        <div class="12u$">
+                            <ul class="actions">
+                                <li><input id="submitLogin" value="Login" class="special big" type="submit"></li>
+                            </ul>
+                        </div>
+                    </div>
+                </form>
+                {% if login_form.errors %}
+                    <div class="error">
+                        {{ login_form.non_field_errors }}
+                    </div>
+                {% endif %}
+            </div>
+        </section>
+
+        <hr />
+
+        <section>
+            <h2>Register</h2>
+            <div class="container 50%">
+                <form class="parsley-form" id="registerForm" action="{% url 'pswebsite:register_post' %}" method="post">
+                    {% csrf_token %}
+                    <div class="row uniform">
+                        <div class="12u">
+                            <input name="{{ register_form.email.name }}" placeholder="{{ register_form.email.label }}"
+                                type="email"
+                                id="{{ register_form.email.id_for_label }}" maxlength="254"
+                                data-parsley-trigger="change" data-parsley-remote="{% url 'pswebsite:validnewuser' %}"
+                                data-parsley-remote-message="This email has already been registered." required>
+                        </div>
+                        <div class="6u 12u$(small)">
+                            <input name="{{ register_form.first_name.name }}" value="" placeholder="{{ register_form.first_name.label }}" type="text" required>
+                        </div>
+                        <div class="6u 12u$(small)">
+                            <input name="{{ register_form.last_name.name }}" value="" placeholder="{{ register_form.last_name.label }}" type="text" required>
+                        </div>
+                        <div class="6u 12u$(small)">
+                            <input name="{{ register_form.password1.name }}" value="" placeholder="{{ register_form.password1.label }}" type="password"
+                            id="{{ register_form.password1.id_for_label }}" required>
+                        </div>
+                        <div class="6u$ 12u$(small)">
+                            <input name="{{ register_form.password2.name }}" value="" placeholder="{{ register_form.password2.label }}"
+                                type="password" data-parsley-equalto="#registerForm input[name={{ register_form.password1.name }}]" 
+                                id="{{ register_form.password2.id_for_label }}" data-parsley-equalto-message="Passwords don't match." required>
+                        </div>
+                        <div class="12u$">
+                            <ul class="actions">
+                                <li><input id="submitCreateUser" value="Create User" class="special big"
+                                    type="submit"></li>
+                            </ul>
+                        </div>
+                    </div>
+                </form>
+                {% if register_form.errors %}
+                    <div class="error">
+                        {{ register_form.non_field_errors }}
+                    </div>
+                {% endif %}
+
+                {% comment %}
+                {% if registerForm.errors %}
+                    <div class="error">
+                        <ul>
+                            {% for field_name, field_errors in registerForm.errors %}
+                                {% for error in field_errors %}
+                                    <li>{{ error }}</li>
+                                {% endfor %}
+                            {% endfor %}
+                        </ul>
+                    </div>
+                {% endif %}
+                {% endcomment %}
+            </div>
+        </div>
+    </section>
+    </div>
+</section>
+{% endblock %}
+
+{% block inlineJS %}
+<script>
+    $(".parsley-form").parsley();
+</script>
+{% endblock %}

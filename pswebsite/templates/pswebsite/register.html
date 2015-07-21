@@ -1,0 +1,78 @@
+{% extends "pswebsite/with-forms.html" %}
+{% block content %}
+<!-- Main -->
+<section id="main" class="wrapper">
+    <div class="container">
+        <section>
+            <div class="container 50%">
+                <h2>Register</h2>
+                <form class="parsley-form" id="registerForm" action="{% url 'pswebsite:register' %}" method="post">
+                    {% csrf_token %}
+                    <div class="row uniform">
+                        <div class="12u">
+                            <input name="{{ form.email.name }}" placeholder="{{ form.email.label }}"
+                                type="email"
+                                id="{{ form.email.id_for_label }}" maxlength="254"
+                                data-parsley-trigger="change" data-parsley-remote="{% url 'pswebsite:validnewuser' %}"
+                                data-parsley-remote-message="This email has already been registered."
+                                data-parsley-remote-reverse="true" required>
+                        </div>
+                        <div class="6u 12u$(small)">
+                            <input name="{{ form.first_name.name }}" value="" placeholder="{{ form.first_name.label }}" type="text" required>
+                        </div>
+                        <div class="6u 12u$(small)">
+                            <input name="{{ form.last_name.name }}" value="" placeholder="{{ form.last_name.label }}" type="text" required>
+                        </div>
+                        <div class="6u 12u$(small)">
+                            <input name="{{ form.password1.name }}" value="" placeholder="{{ form.password1.label }}" type="password"
+                            id="{{ form.password1.id_for_label }}" required>
+                        </div>
+                        <div class="6u$ 12u$(small)">
+                            <input name="{{ form.password2.name }}" value="" placeholder="{{ form.password2.label }}"
+                                type="password" data-parsley-equalto="#registerForm input[name={{ form.password1.name }}]" 
+                                id="{{ form.password2.id_for_label }}" data-parsley-equalto-message="Passwords don't match." required>
+                        </div>
+                        <div class="12u$">
+                            <ul class="actions">
+                                <li><input id="submitCreateUser" value="Create User" class="special big"
+                                    type="submit"></li>
+                            </ul>
+                        </div>
+                    </div>
+                </form>
+                {% if form.errors %}
+                    <div class="error">
+                        {{ form.non_field_errors }}
+                        {% for field in form %}
+                            {% if field.errors %}
+                                {{ field.errors }}
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+
+                {% comment %}
+                {% if registerForm.errors %}
+                    <div class="error">
+                        <ul>
+                            {% for field_name, field_errors in registerForm.errors %}
+                                {% for error in field_errors %}
+                                    <li>{{ error }}</li>
+                                {% endfor %}
+                            {% endfor %}
+                        </ul>
+                    </div>
+                {% endif %}
+                {% endcomment %}
+            </div>
+        </div>
+    </section>
+    </div>
+</section>
+{% endblock %}
+
+{% block inlineJS %}
+<script>
+    $(".parsley-form").parsley();
+</script>
+{% endblock %}

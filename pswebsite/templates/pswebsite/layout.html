@@ -1,0 +1,29 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<!--
+    Transit by TEMPLATED
+    templated.co @templatedco
+    Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
+-->
+<html lang="en">
+    {% include "pswebsite/header.html" %}
+
+    <body>
+    {% include "pswebsite/nav.html" %}
+
+    {########## Actual Content ##########}
+    {% block content %}{% endblock %}
+
+    {% include "pswebsite/footer.html" %}
+
+    {# Include extra javascript here #}
+    {% block jsIncludes %}
+        {% for jsFile in extraJsFiles %}
+            <script src="{% static jsFile %}"></script>
+        {% endfor %}
+    {% endblock %}
+
+    {# Put any inline JS here #}
+    {% block inlineJS %}{% endblock %}
+    </body>
+</html>
