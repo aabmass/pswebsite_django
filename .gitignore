@@ -1,0 +1,7 @@
+*~
+*.swp*
+*.pyc
+*__pycache__/
+
+# Our conf file
+pswebsite_django/database_info.py
