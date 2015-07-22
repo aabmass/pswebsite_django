@@ -11,9 +11,10 @@ class ViewTest(TestCase):
             view_name = self.view_name
         return self.client.get(reverse(self.view_name, args, kwargs))
 
-class SeleniumTest(StaticLiveServerTestCase, ViewTest):
+# For some reason, this isn't allowed to inherit from ViewTest, or fails
+class SeleniumTest(StaticLiveServerTestCase):
     """ A selenium test. Uses the firefox web driver.
-        This is a subclass of both LiveServerTestCase and ViewTest
+        This is a subclass of both StaticLiveServerTestCase and ViewTest
     """
     @classmethod
     def setUpClass(cls):
@@ -25,12 +26,10 @@ class SeleniumTest(StaticLiveServerTestCase, ViewTest):
         cls.selenium.quit()
         super().tearDownClass()
 
-    def load_selenium_page(self, view_name=None, args=None, kwargs=None):
-        if not view_name:
-            view_name = self.view_name
-        url = "{}{}".format(self.live_server_url,
-                            reverse(self.view_name, args, kwargs))
-        self.selenium.get(url)
+    # def setUp(self):
+    #     self.load_selenium_page()
 
-    def setUp(self):
-        self.load_selenium_page()
+    def load_selenium_page(self, view_name, args=None, kwargs=None):
+        url = "{}{}".format(self.live_server_url,
+                            reverse(view_name, args, kwargs))
+        self.selenium.get(url)

@@ -1,0 +1,651 @@
+[
+{
+    "pk": 1,
+    "fields": {
+        "app_label": "admin",
+        "model": "logentry"
+    },
+    "model": "contenttypes.contenttype"
+},
+{
+    "pk": 2,
+    "fields": {
+        "app_label": "auth",
+        "model": "permission"
+    },
+    "model": "contenttypes.contenttype"
+},
+{
+    "pk": 3,
+    "fields": {
+        "app_label": "auth",
+        "model": "group"
+    },
+    "model": "contenttypes.contenttype"
+},
+{
+    "pk": 4,
+    "fields": {
+        "app_label": "auth",
+        "model": "user"
+    },
+    "model": "contenttypes.contenttype"
+},
+{
+    "pk": 5,
+    "fields": {
+        "app_label": "contenttypes",
+        "model": "contenttype"
+    },
+    "model": "contenttypes.contenttype"
+},
+{
+    "pk": 6,
+    "fields": {
+        "app_label": "sessions",
+        "model": "session"
+    },
+    "model": "contenttypes.contenttype"
+},
+{
+    "pk": "0pe4ed77teuw37qxo3b36zghjw3yhr9t",
+    "fields": {
+        "session_data": "ZDBhZDZjNzM5NGQyYTYxNDZhM2ZkY2NmMzUzYWE4MmNmOWJjOThiNzp7Il9hdXRoX3VzZXJfaGFzaCI6IjZjM2FhZWUwYjRhNzdhMTE3Y2YzZmE5MzkxMzY1ZjdjNmViMDEwMDYiLCJfYXV0aF91c2VyX2lkIjoiMTIiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCJ9",
+        "expire_date": "2015-08-04T02:50:02.892Z"
+    },
+    "model": "sessions.session"
+},
+{
+    "pk": "lwctx5jbre5wafcs5doqfitiz0niv8ap",
+    "fields": {
+        "session_data": "OGU0YTBkMWU0NWNmY2Y1NWRhN2ZiODBiNzEyODJjZjY4ODUxZWNiZjp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjEiLCJfYXV0aF91c2VyX2hhc2giOiI1MGRjZGQ5NzVhYzYwZTliZTFmNWE1NGMzYzc4MDhjNGU2YzU2YjM3In0=",
+        "expire_date": "2015-08-05T13:38:43.528Z"
+    },
+    "model": "sessions.session"
+},
+{
+    "pk": 1,
+    "fields": {
+        "content_type": 1,
+        "codename": "add_logentry",
+        "name": "Can add log entry"
+    },
+    "model": "auth.permission"
+},
+{
+    "pk": 2,
+    "fields": {
+        "content_type": 1,
+        "codename": "change_logentry",
+        "name": "Can change log entry"
+    },
+    "model": "auth.permission"
+},
+{
+    "pk": 3,
+    "fields": {
+        "content_type": 1,
+        "codename": "delete_logentry",
+        "name": "Can delete log entry"
+    },
+    "model": "auth.permission"
+},
+{
+    "pk": 4,
+    "fields": {
+        "content_type": 2,
+        "codename": "add_permission",
+        "name": "Can add permission"
+    },
+    "model": "auth.permission"
+},
+{
+    "pk": 5,
+    "fields": {
+        "content_type": 2,
+        "codename": "change_permission",
+        "name": "Can change permission"
+    },
+    "model": "auth.permission"
+},
+{
+    "pk": 6,
+    "fields": {
+        "content_type": 2,
+        "codename": "delete_permission",
+        "name": "Can delete permission"
+    },
+    "model": "auth.permission"
+},
+{
+    "pk": 7,
+    "fields": {
+        "content_type": 3,
+        "codename": "add_group",
+        "name": "Can add group"
+    },
+    "model": "auth.permission"
+},
+{
+    "pk": 8,
+    "fields": {
+        "content_type": 3,
+        "codename": "change_group",
+        "name": "Can change group"
+    },
+    "model": "auth.permission"
+},
+{
+    "pk": 9,
+    "fields": {
+        "content_type": 3,
+        "codename": "delete_group",
+        "name": "Can delete group"
+    },
+    "model": "auth.permission"
+},
+{
+    "pk": 10,
+    "fields": {
+        "content_type": 4,
+        "codename": "add_user",
+        "name": "Can add user"
+    },
+    "model": "auth.permission"
+},
+{
+    "pk": 11,
+    "fields": {
+        "content_type": 4,
+        "codename": "change_user",
+        "name": "Can change user"
+    },
+    "model": "auth.permission"
+},
+{
+    "pk": 12,
+    "fields": {
+        "content_type": 4,
+        "codename": "delete_user",
+        "name": "Can delete user"
+    },
+    "model": "auth.permission"
+},
+{
+    "pk": 13,
+    "fields": {
+        "content_type": 5,
+        "codename": "add_contenttype",
+        "name": "Can add content type"
+    },
+    "model": "auth.permission"
+},
+{
+    "pk": 14,
+    "fields": {
+        "content_type": 5,
+        "codename": "change_contenttype",
+        "name": "Can change content type"
+    },
+    "model": "auth.permission"
+},
+{
+    "pk": 15,
+    "fields": {
+        "content_type": 5,
+        "codename": "delete_contenttype",
+        "name": "Can delete content type"
+    },
+    "model": "auth.permission"
+},
+{
+    "pk": 16,
+    "fields": {
+        "content_type": 6,
+        "codename": "add_session",
+        "name": "Can add session"
+    },
+    "model": "auth.permission"
+},
+{
+    "pk": 17,
+    "fields": {
+        "content_type": 6,
+        "codename": "change_session",
+        "name": "Can change session"
+    },
+    "model": "auth.permission"
+},
+{
+    "pk": 18,
+    "fields": {
+        "content_type": 6,
+        "codename": "delete_session",
+        "name": "Can delete session"
+    },
+    "model": "auth.permission"
+},
+{
+    "pk": 1,
+    "fields": {
+        "password": "pbkdf2_sha256$20000$olioFVDwt38E$+o+mjuiEsaYgU/x3gA3htGFn9+NZE01wscMXNVruVq4=",
+        "email": "aabmass@gmail.com",
+        "is_active": true,
+        "user_permissions": [],
+        "is_staff": true,
+        "username": "admin",
+        "first_name": "",
+        "groups": [],
+        "last_login": "2015-07-22T13:38:43.502Z",
+        "is_superuser": true,
+        "date_joined": "2015-07-18T03:48:01.359Z",
+        "last_name": ""
+    },
+    "model": "auth.user"
+},
+{
+    "pk": 27,
+    "fields": {
+        "password": "pbkdf2_sha256$20000$yLozNPBTHxcU$Jfkre7lNw3oiYx9VI9hglrEn1hkw/soo3qfJBenZW3k=",
+        "email": "aabmass@gmail.com",
+        "is_active": true,
+        "user_permissions": [],
+        "is_staff": false,
+        "username": "aabmass@gmail.com",
+        "first_name": "Aaron",
+        "groups": [],
+        "last_login": "2015-07-22T02:12:16.231Z",
+        "is_superuser": false,
+        "date_joined": "2015-07-21T22:54:51.879Z",
+        "last_name": "Abbott"
+    },
+    "model": "auth.user"
+},
+{
+    "pk": 33,
+    "fields": {
+        "password": "pbkdf2_sha256$20000$ZrAkkoAbTFWv$77xF6WRiK/kcSJQHWR1Rw8sZ0XthQKK8s21FbSCcYIc=",
+        "email": "ruth@gmail.com",
+        "is_active": true,
+        "user_permissions": [],
+        "is_staff": false,
+        "username": "ruth@gmail.com",
+        "first_name": "Ruth",
+        "groups": [],
+        "last_login": "2015-07-22T03:53:56.274Z",
+        "is_superuser": false,
+        "date_joined": "2015-07-22T03:53:56.088Z",
+        "last_name": "Abb"
+    },
+    "model": "auth.user"
+},
+{
+    "pk": 34,
+    "fields": {
+        "password": "pbkdf2_sha256$20000$EIayWSkFfyD7$1ehv7ujbil0nN+i42rYDdripabyUacxD1ZjADX8LZUk=",
+        "email": "",
+        "is_active": true,
+        "user_permissions": [],
+        "is_staff": false,
+        "username": "tester@test.com",
+        "first_name": "Test",
+        "groups": [],
+        "last_login": null,
+        "is_superuser": false,
+        "date_joined": "2015-07-22T13:39:16.778Z",
+        "last_name": "Err"
+    },
+    "model": "auth.user"
+},
+{
+    "pk": 1,
+    "fields": {
+        "user": 1,
+        "change_message": "",
+        "action_time": "2015-07-20T03:27:56.316Z",
+        "content_type": 4,
+        "object_repr": "a@a.a",
+        "object_id": "2",
+        "action_flag": 1
+    },
+    "model": "admin.logentry"
+},
+{
+    "pk": 2,
+    "fields": {
+        "user": 1,
+        "change_message": "",
+        "action_time": "2015-07-20T04:10:50.302Z",
+        "content_type": 4,
+        "object_repr": "b@b.b",
+        "object_id": "3",
+        "action_flag": 3
+    },
+    "model": "admin.logentry"
+},
+{
+    "pk": 3,
+    "fields": {
+        "user": 1,
+        "change_message": "",
+        "action_time": "2015-07-20T20:29:07.301Z",
+        "content_type": 4,
+        "object_repr": "",
+        "object_id": "4",
+        "action_flag": 3
+    },
+    "model": "admin.logentry"
+},
+{
+    "pk": 4,
+    "fields": {
+        "user": 1,
+        "change_message": "",
+        "action_time": "2015-07-20T20:32:56.701Z",
+        "content_type": 4,
+        "object_repr": "",
+        "object_id": "5",
+        "action_flag": 3
+    },
+    "model": "admin.logentry"
+},
+{
+    "pk": 5,
+    "fields": {
+        "user": 1,
+        "change_message": "",
+        "action_time": "2015-07-20T22:08:42.707Z",
+        "content_type": 4,
+        "object_repr": "",
+        "object_id": "6",
+        "action_flag": 3
+    },
+    "model": "admin.logentry"
+},
+{
+    "pk": 6,
+    "fields": {
+        "user": 1,
+        "change_message": "",
+        "action_time": "2015-07-20T22:21:05.044Z",
+        "content_type": 4,
+        "object_repr": "a@a.a",
+        "object_id": "2",
+        "action_flag": 3
+    },
+    "model": "admin.logentry"
+},
+{
+    "pk": 7,
+    "fields": {
+        "user": 1,
+        "change_message": "",
+        "action_time": "2015-07-21T02:39:33.898Z",
+        "content_type": 4,
+        "object_repr": "aabmass@gmail.com",
+        "object_id": "8",
+        "action_flag": 3
+    },
+    "model": "admin.logentry"
+},
+{
+    "pk": 8,
+    "fields": {
+        "user": 1,
+        "change_message": "",
+        "action_time": "2015-07-21T02:40:22.329Z",
+        "content_type": 4,
+        "object_repr": "aabmass@gmail.com",
+        "object_id": "10",
+        "action_flag": 3
+    },
+    "model": "admin.logentry"
+},
+{
+    "pk": 9,
+    "fields": {
+        "user": 1,
+        "change_message": "",
+        "action_time": "2015-07-21T02:50:19.214Z",
+        "content_type": 4,
+        "object_repr": "joe@gmail.com",
+        "object_id": "12",
+        "action_flag": 3
+    },
+    "model": "admin.logentry"
+},
+{
+    "pk": 10,
+    "fields": {
+        "user": 1,
+        "change_message": "",
+        "action_time": "2015-07-21T03:23:55.492Z",
+        "content_type": 4,
+        "object_repr": "bob@gmail.com",
+        "object_id": "13",
+        "action_flag": 3
+    },
+    "model": "admin.logentry"
+},
+{
+    "pk": 11,
+    "fields": {
+        "user": 1,
+        "change_message": "",
+        "action_time": "2015-07-21T03:26:27.523Z",
+        "content_type": 4,
+        "object_repr": "bob@gmail.com",
+        "object_id": "14",
+        "action_flag": 3
+    },
+    "model": "admin.logentry"
+},
+{
+    "pk": 12,
+    "fields": {
+        "user": 1,
+        "change_message": "",
+        "action_time": "2015-07-21T03:26:50.813Z",
+        "content_type": 4,
+        "object_repr": "bob@gmail.com",
+        "object_id": "15",
+        "action_flag": 3
+    },
+    "model": "admin.logentry"
+},
+{
+    "pk": 13,
+    "fields": {
+        "user": 1,
+        "change_message": "",
+        "action_time": "2015-07-21T03:31:46.872Z",
+        "content_type": 4,
+        "object_repr": "bob@gmail.com",
+        "object_id": "16",
+        "action_flag": 3
+    },
+    "model": "admin.logentry"
+},
+{
+    "pk": 14,
+    "fields": {
+        "user": 1,
+        "change_message": "",
+        "action_time": "2015-07-21T03:31:46.934Z",
+        "content_type": 4,
+        "object_repr": "jim@gmail.com",
+        "object_id": "17",
+        "action_flag": 3
+    },
+    "model": "admin.logentry"
+},
+{
+    "pk": 15,
+    "fields": {
+        "user": 1,
+        "change_message": "",
+        "action_time": "2015-07-21T03:36:12.791Z",
+        "content_type": 4,
+        "object_repr": "jim@gmail.com",
+        "object_id": "18",
+        "action_flag": 3
+    },
+    "model": "admin.logentry"
+},
+{
+    "pk": 16,
+    "fields": {
+        "user": 1,
+        "change_message": "",
+        "action_time": "2015-07-21T03:36:12.829Z",
+        "content_type": 4,
+        "object_repr": "bill@gmail.com",
+        "object_id": "19",
+        "action_flag": 3
+    },
+    "model": "admin.logentry"
+},
+{
+    "pk": 17,
+    "fields": {
+        "user": 1,
+        "change_message": "",
+        "action_time": "2015-07-21T03:40:09.034Z",
+        "content_type": 4,
+        "object_repr": "John@gmail.com",
+        "object_id": "23",
+        "action_flag": 3
+    },
+    "model": "admin.logentry"
+},
+{
+    "pk": 18,
+    "fields": {
+        "user": 1,
+        "change_message": "",
+        "action_time": "2015-07-21T03:40:09.085Z",
+        "content_type": 4,
+        "object_repr": "frank@gmail.com",
+        "object_id": "22",
+        "action_flag": 3
+    },
+    "model": "admin.logentry"
+},
+{
+    "pk": 19,
+    "fields": {
+        "user": 1,
+        "change_message": "",
+        "action_time": "2015-07-21T03:40:09.118Z",
+        "content_type": 4,
+        "object_repr": "bob@gmail.com",
+        "object_id": "20",
+        "action_flag": 3
+    },
+    "model": "admin.logentry"
+},
+{
+    "pk": 20,
+    "fields": {
+        "user": 1,
+        "change_message": "",
+        "action_time": "2015-07-21T03:40:09.160Z",
+        "content_type": 4,
+        "object_repr": "bill@gmail.com",
+        "object_id": "21",
+        "action_flag": 3
+    },
+    "model": "admin.logentry"
+},
+{
+    "pk": 21,
+    "fields": {
+        "user": 1,
+        "change_message": "",
+        "action_time": "2015-07-21T03:40:09.193Z",
+        "content_type": 4,
+        "object_repr": "aabmass@gmail.com",
+        "object_id": "11",
+        "action_flag": 3
+    },
+    "model": "admin.logentry"
+},
+{
+    "pk": 22,
+    "fields": {
+        "user": 1,
+        "change_message": "",
+        "action_time": "2015-07-22T00:13:03.325Z",
+        "content_type": 4,
+        "object_repr": "a@a.com",
+        "object_id": "25",
+        "action_flag": 3
+    },
+    "model": "admin.logentry"
+},
+{
+    "pk": 23,
+    "fields": {
+        "user": 1,
+        "change_message": "",
+        "action_time": "2015-07-22T00:13:03.378Z",
+        "content_type": 4,
+        "object_repr": "a@gmail.com",
+        "object_id": "24",
+        "action_flag": 3
+    },
+    "model": "admin.logentry"
+},
+{
+    "pk": 24,
+    "fields": {
+        "user": 1,
+        "change_message": "",
+        "action_time": "2015-07-22T00:13:03.412Z",
+        "content_type": 4,
+        "object_repr": "tester@gmail.com",
+        "object_id": "31",
+        "action_flag": 3
+    },
+    "model": "admin.logentry"
+},
+{
+    "pk": 25,
+    "fields": {
+        "user": 1,
+        "change_message": "",
+        "action_time": "2015-07-22T00:13:03.446Z",
+        "content_type": 4,
+        "object_repr": "user@user.user",
+        "object_id": "28",
+        "action_flag": 3
+    },
+    "model": "admin.logentry"
+},
+{
+    "pk": 26,
+    "fields": {
+        "user": 1,
+        "change_message": "",
+        "action_time": "2015-07-22T00:13:25.207Z",
+        "content_type": 4,
+        "object_repr": "tester@gmail.com",
+        "object_id": "32",
+        "action_flag": 3
+    },
+    "model": "admin.logentry"
+},
+{
+    "pk": 27,
+    "fields": {
+        "user": 1,
+        "change_message": "",
+        "action_time": "2015-07-22T13:39:16.799Z",
+        "content_type": 4,
+        "object_repr": "tester@test.com",
+        "object_id": "34",
+        "action_flag": 1
+    },
+    "model": "admin.logentry"
+}
+]
