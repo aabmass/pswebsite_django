@@ -2,39 +2,9 @@ from django.core.urlresolvers import reverse
 from django.contrib.auth.models import User
 
 from pswebsite.tests.test_types import SeleniumTest, ViewTest
-from pswebsite.tests.test_settings import test_data, test_user_data
+from pswebsite.tests.test_settings import test_user_data
 
 from pswebsite.forms import RegisterForm
-
-user = None
-
-def create_new_user(email="tester@gmail.com",
-                    first_name="Test",
-                    last_name="Er",
-                    password="tester"):
-    """ Create a new user and return a tuple of the user
-        object and the user_data, so that we know the password
-        and any other hashed fields original values
-    """
-
-    # can probably be done more elegantly with args/kwargs
-    user_data = {
-        'email': email,
-        'username': email,
-        'first_name': first_name,
-        'last_name': last_name,
-        'password': password,
-    }
-
-    user = User.objects.create_user(email, email=email, password=password,
-                                    first_name=first_name, last_name=last_name)
-    user.save()
-    return (user, user_data)
-
-
-#def login_user_completely(user):
-
-#def logout_user_completely(user):
 
 class IndexViewTests(ViewTest):
     view_name = 'pswebsite:index'
@@ -47,9 +17,30 @@ class IndexViewTests(ViewTest):
         res = self.get_res()
         self.assertContains(res, "Register")
 
-class LoginLogoutViewTests(SeleniumTest):
-    fixtures = [test_data]
+class RegisterViewTests(SeleniumTest):
+    def test_register_form_can_register_new_user(self):
+        self.load_selenium_page('pswebsite:register')
+        username_input = self.selenium.find_element_by_name("email")
+        username_input.send_keys("register@tester.com")
+        first_name_input = self.selenium.find_element_by_name("first_name")
+        first_name_input.send_keys("Regist")
+        last_name_input = self.selenium.find_element_by_name("last_name")
+        last_name_input.send_keys("Err")
+        password1_input = self.selenium.find_element_by_name("password1")
+        password1_input.send_keys("register")
+        password2_input = self.selenium.find_element_by_name("password2")
+        password2_input.send_keys("register")
 
+        self.selenium.find_element_by_xpath('//input[@value="Create User"]').click()
+
+        # now make sure the user is in the database
+        user = User.objects.get(username="register@tester.com")
+        self.assertIsNotNone(user)
+
+    def test_register_form_logs_in_user_after_successful_registration(self):
+        self.load_selenium_page('pswebsite:register')
+
+class LoginLogoutViewTests(SeleniumTest):
     def __init__(self, *args, **kwargs):
         self.is_logged_in = False
         super().__init__(*args, **kwargs)
@@ -91,30 +82,3 @@ class LoginLogoutViewTests(SeleniumTest):
         self.assertNotIn(test_user_data['username'],
                          self.selenium.find_element_by_tag_name('body').text)
         self.is_logged_in = False
-
-
-
-### TESTS
-from django.test import LiveServerTestCase
-from selenium.webdriver.firefox.webdriver import WebDriver
-
-class MySeleniumTests(LiveServerTestCase):
-    fixtures = ['testdata.json']
-
-    @classmethod
-    def setUpClass(cls):
-        super(MySeleniumTests, cls).setUpClass()
-        cls.selenium = WebDriver()
-
-    @classmethod
-    def tearDownClass(cls):
-        cls.selenium.quit()
-        super(MySeleniumTests, cls).tearDownClass()
-
-    def test_login(self):
-        self.selenium.get('%s%s' % (self.live_server_url, '/login/'))
-        username_input = self.selenium.find_element_by_name("username")
-        username_input.send_keys('tester@test.com')
-        password_input = self.selenium.find_element_by_name("password")
-        password_input.send_keys('tester123')
-        self.selenium.find_element_by_xpath('//input[@value="Login"]').click()

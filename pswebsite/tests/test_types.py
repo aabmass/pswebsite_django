@@ -3,9 +3,13 @@ from django.test import TestCase
 
 from django.core.urlresolvers import reverse
 
+from pswebsite.tests.test_settings import test_data
+
 from selenium.webdriver.firefox.webdriver import WebDriver
 
 class ViewTest(TestCase):
+    fixtures = [test_data]
+
     def get_res(self, view_name=None, args=None, kwargs=None):
         if not view_name:
             view_name = self.view_name
@@ -16,6 +20,8 @@ class SeleniumTest(StaticLiveServerTestCase):
     """ A selenium test. Uses the firefox web driver.
         This is a subclass of both StaticLiveServerTestCase and ViewTest
     """
+    fixtures = [test_data]
+
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
