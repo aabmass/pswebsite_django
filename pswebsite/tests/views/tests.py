@@ -6,6 +6,11 @@ from pswebsite.tests.test_settings import test_user_data
 
 from pswebsite.forms import RegisterForm
 
+# TODO: add tests for Register already registered user
+# and trying to login non-registered username. These
+# have to be Selenium since they will test the parsley
+# frontend AJAX form validation
+
 class IndexViewTests(ViewTest):
     view_name = 'pswebsite:index'
 
@@ -19,9 +24,11 @@ class IndexViewTests(ViewTest):
 
 class RegisterViewTests(SeleniumTest):
     def test_register_form_can_register_new_user(self):
+        new_username = "register@test.com"
+
         self.load_selenium_page('pswebsite:register')
         username_input = self.selenium.find_element_by_name("email")
-        username_input.send_keys("register@tester.com")
+        username_input.send_keys(new_username)
         first_name_input = self.selenium.find_element_by_name("first_name")
         first_name_input.send_keys("Regist")
         last_name_input = self.selenium.find_element_by_name("last_name")
@@ -33,12 +40,13 @@ class RegisterViewTests(SeleniumTest):
 
         self.selenium.find_element_by_xpath('//input[@value="Create User"]').click()
 
-        # now make sure the user is in the database
-        user = User.objects.get(username="register@tester.com")
-        self.assertIsNotNone(user)
+        # test that user got logged in
+        self.assertIn(new_username,
+                      self.selenium.find_element_by_tag_name('body').text)
 
-    def test_register_form_logs_in_user_after_successful_registration(self):
-        self.load_selenium_page('pswebsite:register')
+        # now make sure the user is in the database too
+        user = User.objects.get(username=new_username)
+        self.assertIsNotNone(user)
 
 class LoginLogoutViewTests(SeleniumTest):
     def __init__(self, *args, **kwargs):
