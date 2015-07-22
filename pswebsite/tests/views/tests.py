@@ -47,38 +47,6 @@ class IndexViewTests(ViewTest):
         res = self.get_res()
         self.assertContains(res, "Register")
 
-    #def test_doesnt_show_register_menu_if_logged_in(self):
-
-    #def test_doesnt_show_login_menu_if_logged_in(self):
-
-    #def test_shows_user_menu_if_logged_in(self):
-
-# This appears impossible for some reason. IDK what the problem is
-# appears that the user I create isn't getting saved to the test DB
-# and when the selenium post finally gets to the view, the user is
-# no longer in the database.... Shame on django, this is pathetic.
-# I want to test logging in and it appears impossible. Documentation
-# is, of course, completely useless, not fulling documenting the API
-# or which methods can/should be overriden as hooks in which classes
-# or what these methods do. For some reason, django thinks that the best
-# course of action is to make the developer search their tutorial and
-# documentation that describes "common" uses (as deemed by them).
-# Apparently, documenting testing logging in is too not common enough
-# for them.
-#
-# Even more dissappointing, I see answers appearing everywhere not running
-# into this problems. This is really bothering me and I'm quite irritated
-# and frankly feeling defeated by my attempts to create a fucking test.
-#
-# Note: there appears a very vague and underqualified statement in the official
-# "documentation" on this subject. Appearing in a comment in a brief code
-# example, the documentation vaguely states that:
-# # Recall that middleware are not supported. You can simulate a
-# # logged-in user by setting request.user manually.
-# .... well that is useless for doing a selenium test and actually
-# seeing if your app is broken or not
-
-
 class LoginLogoutViewTests(SeleniumTest):
     fixtures = [test_data]
 
