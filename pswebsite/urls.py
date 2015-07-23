@@ -11,7 +11,6 @@ urlpatterns = [
     url(r'^$', views.IndexView.as_view(), name='index'),
     url(r'^about/$', views.AboutView.as_view(), name='about'),
     url(r'^user/$', views.UserView.as_view(), name='user'),
-
     url(r'^login/$',
         auth_views.login,
         {
@@ -20,7 +19,6 @@ urlpatterns = [
         },
         name='login'
     ),
-
     url(r'^logout/$',
         auth_views.logout,
         {
