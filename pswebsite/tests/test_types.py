@@ -4,16 +4,20 @@ from django.test import TestCase
 from django.core.urlresolvers import reverse
 
 from pswebsite.tests.test_settings import test_data
+from pswebsite.utils import url_with_querystring
 
 from selenium.webdriver.firefox.webdriver import WebDriver
 
 class ViewTest(TestCase):
     fixtures = [test_data]
 
-    def get_res(self, view_name=None, args=None, kwargs=None):
+    def get_res(self, view_name=None, args=None, kwargs=None,
+                **querystring_args):
         if not view_name:
             view_name = self.view_name
-        return self.client.get(reverse(self.view_name, args, kwargs))
+
+        url = reverse(self.view_name, args, kwargs)
+        return self.client.get(url_with_querystring(url, **querystring_args))
 
 # For some reason, this isn't allowed to inherit from ViewTest, or fails
 class SeleniumTest(StaticLiveServerTestCase):
