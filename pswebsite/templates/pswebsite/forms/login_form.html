@@ -1,0 +1,27 @@
+<form class="parsley-form" id="loginForm" action="{% url 'pswebsite:login' %}" method="post">
+    {% csrf_token %}
+    <div class="row uniform">
+        <div class="6u 12u$(small)">
+            <input id="{{ form.username.id_for_label }}" maxlength="254"
+                name="{{ form.username.name }}" type="text" placeholder="Email"
+                data-parsley-remote="{% url 'pswebsite:userexists' %}"
+                data-parsley-remote-message="This is not a registered email"
+                data-parsley-trigger="change" required>
+        </div>
+        <div class="6u$ 12u$(small)">
+            <input name="{{ form.password.name }}"
+                id="{{ form.password.id_for_label }}"
+                placeholder="Password" type="password" required>
+        </div>
+        <div class="12u$">
+            <ul class="actions">
+                <li><input id="submitLogin" value="Login" class="special big" type="submit"></li>
+            </ul>
+        </div>
+    </div>
+</form>
+{% if form.errors %}
+    <div class="error">
+        {{ form.non_field_errors }}
+    </div>
+{% endif %}
