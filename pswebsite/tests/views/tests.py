@@ -29,7 +29,9 @@ class UserExistsViewTests(ViewTest):
         self.assertGreaterEqual(res.status_code, 200)
         self.assertLessEqual(res.status_code, 299)
 
-    #def test_returns_404_for_non_existant_user(self):
+    def test_returns_404_for_non_existant_user(self):
+        res = self.get_res(username='somenonexistantuser@not.com')
+        self.assertEquals(res.status_code, 404)
 
 class RegisterViewTests(SeleniumTest):
     def test_register_form_can_register_new_user(self):
