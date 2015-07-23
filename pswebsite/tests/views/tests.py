@@ -4,8 +4,6 @@ from django.contrib.auth.models import User
 from pswebsite.tests.test_types import SeleniumTest, ViewTest
 from pswebsite.tests.test_settings import test_user_data
 
-from pswebsite.forms import RegisterForm
-
 # TODO: add tests for Register already registered user
 # and trying to login non-registered username. These
 # have to be Selenium since they will test the parsley
@@ -21,6 +19,17 @@ class IndexViewTests(ViewTest):
     def test_shows_register_menu(self):
         res = self.get_res()
         self.assertContains(res, "Register")
+
+class UserExistsViewTests(ViewTest):
+    view_name = 'pswebsite:userexists'
+
+    def test_returns_2xx_for_existing_user(self):
+        res = self.get_res(username=test_user_data['username'])
+
+        self.assertGreaterEqual(res.status_code, 200)
+        self.assertLessEqual(res.status_code, 299)
+
+    #def test_returns_404_for_non_existant_user(self):
 
 class RegisterViewTests(SeleniumTest):
     def test_register_form_can_register_new_user(self):
