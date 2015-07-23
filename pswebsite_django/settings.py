@@ -39,8 +39,8 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
 
     # 3rd party apps
-    'crispy_forms',
     'debug_toolbar',
+    'django_extensions',
 
     # my apps
     'pswebsite',
