@@ -30,19 +30,14 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 INSTALLED_APPS = (
-    # django apps
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
-    # 3rd party apps
     'debug_toolbar',
     'django_extensions',
-
-    # my apps
     'pswebsite',
 )
 
@@ -113,5 +108,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
 STATIC_URL = '/static/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')  # NOTE: change this for deploying
+
+# for now, host media in the static directory since its already served
+# NOTE: change this before deploying and let the real webserver serve it!
+MEDIA_URL = 'static/pswebsite/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'pswebsite',
+                          'static', 'pswebsite')
 LOGIN_REDIRECT_URL = 'pswebsite:index'
