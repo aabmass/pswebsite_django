@@ -5,5 +5,7 @@
 
 media
 
+pswebsite/static/pswebsite/productimages
+
 # Our conf file
 pswebsite_django/database_info.py
