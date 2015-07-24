@@ -35,6 +35,9 @@ class PosterDimension(models.Model):
     units = models.CharField(max_length=10,
                              choices=UNITS_CHOICES, default=INCHES)
 
+    def __str__(self):
+        return "{}x{}".format(self.width, self.length)
+
 class Poster(Product):
     dimension = models.ManyToManyField(PosterDimension)
 
