@@ -3,5 +3,7 @@
 *.pyc
 *__pycache__/
 
+media
+
 # Our conf file
 pswebsite_django/database_info.py
