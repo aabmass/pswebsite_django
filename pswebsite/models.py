@@ -8,7 +8,7 @@ class Product(models.Model):
 
     name = models.CharField(max_length=100)
     description = models.TextField()
-    user_creator = models.ForeignKey(User,
+    user_creator = models.ForeignKey(User, editable=False,
                                      verbose_name=("the user that created "
                                                    "this product"))
 
@@ -19,6 +19,11 @@ class Product(models.Model):
         return self.name
 
 class PosterDimension(models.Model):
+    INCHES = 'in'
+    CENTIMETERS = 'cm'
+    UNITS_CHOICES = ((INCHES, 'Inches'),
+                     (CENTIMETERS, 'Centimeters'))
+
     length = models.PositiveSmallIntegerField("length along horizontal",
                                               help_text=("Length along the "
                                                          "bottom of a poster"))
@@ -27,11 +32,14 @@ class PosterDimension(models.Model):
                                                         "vertical side of a "
                                                         "poster"))
 
+    units = models.CharField(max_length=10,
+                             choices=UNITS_CHOICES, default=INCHES)
+
 class Poster(Product):
     dimension = models.ManyToManyField(PosterDimension)
 
     def __str__(self):
-        return "Poster: {}. Created by {}".format(self.name, self.user)
+        return "{}. Created by {}".format(self.name, self.user_creator)
 
 class PosterImage(models.Model):
     """
@@ -42,3 +50,6 @@ class PosterImage(models.Model):
 
     image = models.ImageField(upload_to="productimages")
     poster = models.ForeignKey(Poster)
+
+    def __str__(self):
+        return self.image.name
