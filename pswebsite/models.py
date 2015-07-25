@@ -27,22 +27,22 @@ class PosterDimension(models.Model):
     length = models.PositiveSmallIntegerField("length along horizontal",
                                               help_text=("Length along the "
                                                          "bottom of a poster"))
-    width = models.PositiveSmallIntegerField("length along vertical",
-                                             help_text=("Length along the "
-                                                        "vertical side of a "
-                                                        "poster"))
+    height = models.PositiveSmallIntegerField("height along vertical",
+                                              help_text=("Height along the "
+                                                         "vertical side of a "
+                                                         "poster"))
 
     units = models.CharField(max_length=10,
                              choices=UNITS_CHOICES, default=INCHES)
 
     def __str__(self):
-        return "{}x{}".format(self.width, self.length)
+        return "{}x{}".format(self.height, self.length)
 
 class Poster(Product):
     dimension = models.ManyToManyField(PosterDimension)
 
     def __str__(self):
-        return "{}. Created by {}".format(self.name, self.user_creator)
+        return self.name
 
 class PosterImage(models.Model):
     """
