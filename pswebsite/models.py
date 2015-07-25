@@ -6,7 +6,7 @@ class Product(models.Model):
         The abstract base class for products in this app
     """
 
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=100, unique=True)
     description = models.TextField()
     user_creator = models.ForeignKey(User, editable=False,
                                      verbose_name=("the user that created "
