@@ -1,4 +1,5 @@
 from django.views.generic import base
+from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView
 from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
@@ -8,6 +9,7 @@ from django.shortcuts import get_object_or_404
 from django.http import HttpResponse
 
 from pswebsite.forms import RegisterForm
+from pswebsite.models import Poster
 
 # TODO: decorate user views with login_requiered
 
@@ -66,3 +68,11 @@ class UserExists(base.View):
 
         user = get_object_or_404(User, username=username)
         return HttpResponse()
+
+class PosterDetailView(DetailView):
+    model = Poster
+    template_name = 'pswebsite/poster.html'
+
+    def get_object(self):
+        return get_object_or_404(self.model,
+                                 name=self.kwargs.get('name'))
