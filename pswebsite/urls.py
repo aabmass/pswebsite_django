@@ -31,11 +31,11 @@ urlpatterns = [
     # ajax method
     url(r'^validate/userexists/$', views.UserExists.as_view(), name='userexists'),
 
-    # the next two are both for detail views of posters
+    # this will redirect to 'pswebsite:poster' with the right slug
     url(r'^poster/(?P<pk>[0-9]+)/$',
         views.PosterDetailWithoutSlugRedirectView.as_view(),
         name='poster-without-slug'),
-
+    # put both the pk and the slug name for SEO friendliness
     url(r'^poster/(?P<pk>[0-9]+)/(?P<slug>[\w-]+)/$',
         views.PosterDetailView.as_view(), name='poster'),
 ]
