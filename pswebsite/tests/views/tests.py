@@ -2,7 +2,7 @@ from django.core.urlresolvers import reverse
 from django.contrib.auth.models import User
 
 from pswebsite.tests.test_types import SeleniumTest, ViewTest
-from pswebsite.tests.test_settings import test_user_data
+from pswebsite.tests import test_settings as ts
 
 # TODO: add tests for Register already registered user
 # and trying to login non-registered username. These
@@ -24,7 +24,7 @@ class UserExistsViewTests(ViewTest):
     view_name = 'pswebsite:userexists'
 
     def test_returns_2xx_for_existing_user(self):
-        res = self.get_res(username=test_user_data['username'])
+        res = self.get_res(username=ts.test_user_data['username'])
 
         self.assertGreaterEqual(res.status_code, 200)
         self.assertLessEqual(res.status_code, 299)
@@ -72,9 +72,9 @@ class LoginLogoutViewTests(SeleniumTest):
         self.load_selenium_page('pswebsite:login')
 
         username_input = self.selenium.find_element_by_name("username")
-        username_input.send_keys(test_user_data['username'])
+        username_input.send_keys(ts.test_user_data['username'])
         password_input = self.selenium.find_element_by_name("password")
-        password_input.send_keys(test_user_data['password'])
+        password_input.send_keys(ts.test_user_data['password'])
         self.selenium.find_element_by_xpath('//input[@value="Login"]').click()
 
     def test_can_login_user(self):
@@ -83,7 +83,7 @@ class LoginLogoutViewTests(SeleniumTest):
 
         # to test, the user's name should appear at the index page
         #self.load_selenium_page(view_name='pswebsite:index')
-        self.assertIn(test_user_data['username'],
+        self.assertIn(ts.test_user_data['username'],
                       self.selenium.find_element_by_tag_name('body').text)
 
         self.is_logged_in = True
@@ -98,6 +98,19 @@ class LoginLogoutViewTests(SeleniumTest):
 
         # to test, the user's name should not appear at the index page
         # after the redirect
-        self.assertNotIn(test_user_data['username'],
+        self.assertNotIn(ts.test_user_data['username'],
                          self.selenium.find_element_by_tag_name('body').text)
         self.is_logged_in = False
+
+class PosterViewTests(ViewTest):
+    view_name = 'pswebsite:poster'
+
+    def test_does_redirect_without_slug(self):
+        res = self.get_res(view_name='pswebsite:poster-without-slug',
+                           kwargs={'pk': ts.test_poster_data['pk']})
+        self.assertRedirects(
+            res,
+            reverse('pswebsite:poster',
+                    kwargs={'pk': ts.test_poster_data['pk'],
+                            'slug': ts.test_poster_data['slug']}),
+            status_code=301)

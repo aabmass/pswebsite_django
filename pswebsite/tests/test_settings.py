@@ -8,3 +8,9 @@ test_user_data = {
     'last_name': 'Err',
     'password': 'tester123',
 }
+
+test_poster_data = {
+    'pk': 1,
+    'slug': 'ruth',
+    'name': 'Ruth',
+}

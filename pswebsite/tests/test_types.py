@@ -16,7 +16,7 @@ class ViewTest(TestCase):
         if not view_name:
             view_name = self.view_name
 
-        url = reverse(self.view_name, args, kwargs)
+        url = reverse(view_name, args=args, kwargs=kwargs)
         return self.client.get(url_with_querystring(url, **querystring_args))
 
 # For some reason, this isn't allowed to inherit from ViewTest, or fails
@@ -41,5 +41,5 @@ class SeleniumTest(StaticLiveServerTestCase):
 
     def load_selenium_page(self, view_name, args=None, kwargs=None):
         url = "{}{}".format(self.live_server_url,
-                            reverse(view_name, args, kwargs))
+                            reverse(view_name, args=args, kwargs=kwargs))
         self.selenium.get(url)
