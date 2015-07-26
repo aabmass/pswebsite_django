@@ -14,7 +14,7 @@ class PosterAdmin(admin.ModelAdmin):
         """
         if not change:
             obj.user_creator = request.user
-            obj.save()
+        obj.save()
 
 # TODO: reorder the fields for dimension so it is correct width x height
 
