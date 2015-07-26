@@ -1,5 +1,6 @@
 from django.core.urlresolvers import reverse
 from django.contrib.auth.models import User
+from django.utils.crypto import get_random_string
 
 from pswebsite.tests.test_types import SeleniumTest, ViewTest
 from pswebsite.tests import test_settings as ts
@@ -106,6 +107,10 @@ class PosterViewTests(ViewTest):
     view_name = 'pswebsite:poster'
 
     def test_does_redirect_without_slug(self):
+        """
+        Should redirect without slug to the view with the slug in the url
+        For instance: '/poster/2/' --> '/poster/2/poster-slug/'
+        """
         res = self.get_res(view_name='pswebsite:poster-without-slug',
                            kwargs={'pk': ts.test_poster_data['pk']})
         self.assertRedirects(
@@ -114,3 +119,19 @@ class PosterViewTests(ViewTest):
                     kwargs={'pk': ts.test_poster_data['pk'],
                             'slug': ts.test_poster_data['slug']}),
             status_code=301)
+    
+    def test_does_redirect_wrong_slug(self):
+        """
+        Should redirect misspelled or outdated slug url to the one with
+        the right slug given the right poster pk
+        For instance: '/poster/2/pster-slg/' --> '/poster/2/poster-slug/'
+        """
+        # generate the url with the right id, wrong slug.
+        # for example '/poster/2/some-slug-wdweg/'
+        res = self.get_res(kwargs={'pk': ts.test_poster_data['pk'],
+                                   'slug': ts.test_poster_data['slug'] + get_random_string(5)})
+        self.assertRedirects(
+            res,
+            reverse('pswebsite:poster',
+                    kwargs={'pk': ts.test_poster_data['pk'],
+                            'slug': ts.test_poster_data['slug']}))
