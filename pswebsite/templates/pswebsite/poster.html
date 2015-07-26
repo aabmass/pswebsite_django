@@ -18,8 +18,10 @@
             </div>
             -->
             <div class="6u -6u">
-                <span class="caption">Caption for poster</span>
-                <a href="#" class="image fit"><img src="{% static 'pswebsite/images/2000px-Introduction_sonate_pathétique.svg.png' %}" alt="" /></a>
+                <span class="">Caption for poster</span>
+                {% for img in poster.posterimage_set.all %}
+                    <a href="#" class="image fit"><img src="{{ img.url }}" alt="" /></a>
+                {% endfor %}
             </div>
         </div>
 

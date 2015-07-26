@@ -61,3 +61,7 @@ class PosterImage(models.Model):
 
     def __str__(self):
         return self.image.name
+
+    def url(self):
+        """return the image's url for use in an img tag"""
+        return '/' + self.image.url
