@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.text import slugify
 from django.contrib.auth.models import User
 
 class Product(models.Model):
@@ -14,6 +15,9 @@ class Product(models.Model):
 
     class Meta:
         abstract = True
+
+    def slug_name(self):
+        return slugify(self.name)
 
     def __str__(self):
         return self.name

@@ -6,7 +6,7 @@ from django.core.urlresolvers import reverse
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib import auth
 from django.shortcuts import get_object_or_404
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 
 from pswebsite.forms import RegisterForm
 from pswebsite.models import Poster
@@ -69,10 +69,37 @@ class UserExists(base.View):
         user = get_object_or_404(User, username=username)
         return HttpResponse()
 
+class PosterDetailWithoutSlugRedirectView(base.RedirectView):
+    permanent = True
+
+    def get_redirect_url(self, *args, **kwargs):
+        poster = get_object_or_404(Poster, pk=kwargs['pk'])
+        return reverse('pswebsite:poster',
+                       kwargs={'pk': poster.pk, 'slug': poster.slug_name()})
+
 class PosterDetailView(DetailView):
     model = Poster
     template_name = 'pswebsite/poster.html'
 
-    def get_object(self):
-        return get_object_or_404(self.model,
-                                 name=self.kwargs.get('name'))
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['page_title'] = context['poster'].name
+        return context
+
+    def get(self, request, *args, **kwargs):
+        # check if the requested path has the proper slug. If not, redirect
+
+        # this string processing may need to be made more robust
+        splits = request.path.split('/')
+        slug = splits[-2]
+        poster = self.get_object()
+
+        # if we have the wrong slug in the url, redirect to the proper one
+        if slug != poster.slug_name():
+            return HttpResponseRedirect(
+                reverse('pswebsite:poster',
+                        kwargs={'pk': poster.pk, 'slug': poster.slug_name()}))
+        else:
+            return super().get(request, *args, **kwargs)
+
+

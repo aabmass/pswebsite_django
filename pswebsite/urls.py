@@ -30,5 +30,12 @@ urlpatterns = [
 
     # ajax method
     url(r'^validate/userexists/$', views.UserExists.as_view(), name='userexists'),
-    url(r'^poster/(?P<name>[\w-]+)/$', views.PosterDetailView.as_view(), name='poster'),
+
+    # the next two are both for detail views of posters
+    url(r'^poster/(?P<pk>[0-9]+)/$',
+        views.PosterDetailWithoutSlugRedirectView.as_view(),
+        name='poster-without-slug'),
+
+    url(r'^poster/(?P<pk>[0-9]+)/(?P<slug>[\w-]+)/$',
+        views.PosterDetailView.as_view(), name='poster'),
 ]
