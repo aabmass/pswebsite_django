@@ -8,6 +8,7 @@ class Product(models.Model):
     """
 
     name = models.CharField(max_length=100, unique=True)
+    tagline = models.TextField()
     description = models.TextField()
     user_creator = models.ForeignKey(User, editable=False,
                                      verbose_name=("the user that created "
