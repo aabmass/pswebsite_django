@@ -81,7 +81,7 @@ class UserMenu(AuthDependentMenu):
         if self.isAuthenticated(request):
             # note, the username will be the email
             # as this is being enforced in the app
-            self.name = request.user.username
+            self.name = request.user.first_name
             self.route_func_name = "pswebsite:user"
 
             # Turn on the logout submenu
