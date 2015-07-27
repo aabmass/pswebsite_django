@@ -1261,3 +1261,7 @@
             border-right: solid 0.5em transparent;
             top: -0.40em;
         }
+        .rounded-img {
+            border-radius:10px;
+            overflow:hidden;
+        }
